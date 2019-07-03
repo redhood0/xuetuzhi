@@ -3,4 +3,14 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="white">#FFFFFF</color>
+    <color name="loginBorderGray">#D6D6D6</color>
+    <color name="loginTextGray">#B6B6B6</color>
+    <color name="loginButtonStart">#1A55CB</color>
+    <color name="loginButtonEnd">#6E77FF</color>
+    <color name="navigationSelected">#6D8CF8</color>
+    <color name="navigationUnSelected">#D0CFCE</color>
+    <color name="editTextBgGray">#F5F5F7</color>
+
+
 </resources>

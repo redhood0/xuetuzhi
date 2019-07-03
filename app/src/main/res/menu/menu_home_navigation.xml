@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/menu_home_navigation">
+    <item android:id="@+id/home_item_homepage"
+        android:icon="@drawable/item_homepage_selected"
+        android:checked="true"
+        android:title="首页"></item>
+    <item android:id="@+id/home_item_learning_group"
+        android:icon="@drawable/item_learning_group_selected"
+        android:title="学习圈"></item>
+    <item android:id="@+id/home_item_msg"
+        android:icon="@drawable/item_msg_selected"
+        android:title="消息"></item>
+    <item android:id="@+id/home_item_personal"
+        android:icon="@drawable/item_person_selected"
+        android:title="我的"></item>
+
+</menu>
