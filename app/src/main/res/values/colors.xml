@@ -14,5 +14,8 @@
     <color name="homePageTextGray">#808080</color>
     <color name="homePageBgBlue">#2066F7</color>
     <color name="Black">#000000</color>
+    <color name="lessBlack">#333333</color>
     <color name="homePageTextOrange">#FD6547</color>
+    <color name="learnGroupDivider">#F5F5F5</color>
+
 </resources>
