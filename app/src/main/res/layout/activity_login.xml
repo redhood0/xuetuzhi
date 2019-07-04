@@ -57,17 +57,23 @@
         app:layout_constraintLeft_toLeftOf="@+id/view_input_border" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:id="@+id/et_login_usename"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="57dp"
+        android:layout_marginRight="5dp"
         android:background="@color/white"
+        android:lines="1"
+        android:maxLines="1"
         android:hint="请输入用户账号"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/view_input_border_line"
         app:layout_constraintLeft_toLeftOf="@+id/view_input_border_line"
+        app:layout_constraintRight_toLeftOf="@+id/iv_login_delete_username"
         app:layout_constraintTop_toTopOf="@+id/view_input_border" />
 
     <EditText
+        android:id="@+id/ed_login_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="57dp"
@@ -80,20 +86,24 @@
         app:layout_constraintTop_toTopOf="@+id/view_input_border_line" />
 
     <ImageView
+        android:id="@+id/iv_login_delete_username"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginTop="16dp"
         android:layout_marginRight="19dp"
         android:src="@mipmap/login_delete"
+        android:clickable="true"
         app:layout_constraintRight_toRightOf="@+id/view_input_border"
         app:layout_constraintTop_toTopOf="@+id/view_input_border" />
 
     <ImageView
+        android:id="@+id/iv_login_password_eye"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginTop="16dp"
         android:layout_marginRight="19dp"
         android:src="@mipmap/login_eye_close"
+        android:clickable="true"
         app:layout_constraintRight_toRightOf="@+id/view_input_border"
         app:layout_constraintTop_toTopOf="@+id/view_input_border_line" />
 

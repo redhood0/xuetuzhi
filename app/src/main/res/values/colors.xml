@@ -11,6 +11,8 @@
     <color name="navigationSelected">#6D8CF8</color>
     <color name="navigationUnSelected">#D0CFCE</color>
     <color name="editTextBgGray">#F5F5F7</color>
-
-
+    <color name="homePageTextGray">#808080</color>
+    <color name="homePageBgBlue">#2066F7</color>
+    <color name="Black">#000000</color>
+    <color name="homePageTextOrange">#FD6547</color>
 </resources>
