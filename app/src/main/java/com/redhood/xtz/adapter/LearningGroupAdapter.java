@@ -40,7 +40,8 @@ public class LearningGroupAdapter extends RecyclerView.Adapter<RecyclerView.View
     // 加载到底
     public final int LOADING_END = 3;
 
-    private PopupWindow popupWindow;
+    private PopupWindow popupShareWindow;
+    private PopupWindow popupLeaveMsgWindow;
     private boolean mIsShowing = false;
 
     Context context;
@@ -85,6 +86,10 @@ public class LearningGroupAdapter extends RecyclerView.Adapter<RecyclerView.View
                 popupShareWindow();
             });
 
+            myHolder.tv_learning_group_button_talk.setOnClickListener(v -> {
+                popupLeaveMsgWindow();
+            });
+
         } else if (holder instanceof FootViewHolder) {
             FootViewHolder footViewHolder = (FootViewHolder) holder;
             switch (loadState) {
@@ -114,6 +119,7 @@ public class LearningGroupAdapter extends RecyclerView.Adapter<RecyclerView.View
         TextView item_learning_group_date;
         TextView item_learning_group_msg;
         TextView tv_learning_group_button_forwarding;
+        TextView tv_learning_group_button_talk;
         ImageView iv_learning_group_button_give_like;
         ImageView iv_learning_group_pic_one;
         ImageView iv_learning_group_pic_two1;
@@ -136,6 +142,7 @@ public class LearningGroupAdapter extends RecyclerView.Adapter<RecyclerView.View
             iv_learning_group_pic_three2 = itemView.findViewById(R.id.iv_learning_group_pic_three2);
             iv_learning_group_pic_three3 = itemView.findViewById(R.id.iv_learning_group_pic_three3);
             tv_learning_group_button_forwarding = itemView.findViewById(R.id.tv_learning_group_button_forwarding);
+            tv_learning_group_button_talk = itemView.findViewById(R.id.tv_learning_group_button_talk);
         }
     }
 
@@ -197,17 +204,37 @@ public class LearningGroupAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
     }
 
-    //分享弹窗弹出
-    private void popupShareWindow() {
-        if (popupWindow == null) {
-            initPopup();
+    //留言输入窗口
+    private void popupLeaveMsgWindow() {
+        if (popupLeaveMsgWindow == null) {
+            View pop = View.inflate(context, R.layout.popup_leave_msg, null);
+            popupLeaveMsgWindow = new PopupWindow(pop, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            popupLeaveMsgWindow.setTouchable(true);
+            popupLeaveMsgWindow.setOutsideTouchable(true);
+            popupLeaveMsgWindow.setBackgroundDrawable(new BitmapDrawable(context.getResources(), (Bitmap) null));
+            popupLeaveMsgWindow.setAnimationStyle(R.style.anim_popup_window);
         }
-        if (!popupWindow.isShowing()) {
+        if (!popupLeaveMsgWindow.isShowing()) {
             Activity activity = (Activity) context;
-            popupWindow.showAtLocation(activity.findViewById(R.id.buttom_navigation_bar), Gravity.BOTTOM, 0, 0);
+            popupLeaveMsgWindow.showAtLocation(activity.findViewById(R.id.buttom_navigation_bar), Gravity.BOTTOM, 0, 0);
             showBackgroundAnimator();
             mIsShowing = true;
-            popupWindow.setOnDismissListener(() -> {
+            popupLeaveMsgWindow.setOnDismissListener(() -> {
+                setWindowBackgroundAlpha(1.0f);
+            });
+        }
+    }
+    //分享弹窗弹出
+    private void popupShareWindow() {
+        if (popupShareWindow == null) {
+            initPopup();
+        }
+        if (!popupShareWindow.isShowing()) {
+            Activity activity = (Activity) context;
+            popupShareWindow.showAtLocation(activity.findViewById(R.id.buttom_navigation_bar), Gravity.BOTTOM, 0, 0);
+            showBackgroundAnimator();
+            mIsShowing = true;
+            popupShareWindow.setOnDismissListener(() -> {
                 setWindowBackgroundAlpha(1.0f);
             });
         }
@@ -215,15 +242,15 @@ public class LearningGroupAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     private void initPopup() {
         View pop = View.inflate(context, R.layout.popup_share, null);
-        popupWindow = new PopupWindow(pop, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        popupWindow.setTouchable(true);
-        popupWindow.setOutsideTouchable(true);
-        popupWindow.setBackgroundDrawable(new BitmapDrawable(context.getResources(), (Bitmap) null));
-        popupWindow.setAnimationStyle(R.style.anim_popup_window);
+        popupShareWindow = new PopupWindow(pop, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        popupShareWindow.setTouchable(true);
+        popupShareWindow.setOutsideTouchable(true);
+        popupShareWindow.setBackgroundDrawable(new BitmapDrawable(context.getResources(), (Bitmap) null));
+        popupShareWindow.setAnimationStyle(R.style.anim_popup_window);
         mIsShowing = false;
 
         pop.findViewById(R.id.btn_popup_share_close).setOnClickListener(v -> {
-            popupWindow.dismiss();
+            popupShareWindow.dismiss();
         });
     }
 
