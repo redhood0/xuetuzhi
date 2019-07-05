@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#E1F1F1F1"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_popup_share_msg"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:src="@mipmap/msg_share_icon"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="聊天消息"
+            android:textColor="@color/lessBlack"
+            android:textSize="12dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_popup_share_msg"
+            app:layout_constraintRight_toRightOf="@+id/iv_popup_share_msg"
+            app:layout_constraintTop_toBottomOf="@+id/iv_popup_share_msg" />
+
+        <ImageView
+            android:id="@+id/iv_popup_share_weixin"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:src="@mipmap/weixin_share_icon"
+            app:layout_constraintLeft_toRightOf="@+id/iv_popup_share_msg"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="微信"
+            android:textColor="@color/lessBlack"
+            android:textSize="12dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_popup_share_weixin"
+            app:layout_constraintRight_toRightOf="@+id/iv_popup_share_weixin"
+            app:layout_constraintTop_toBottomOf="@+id/iv_popup_share_weixin" />
+
+        <ImageView
+            android:id="@+id/iv_popup_share_qq"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:src="@mipmap/qq_share_icon"
+            app:layout_constraintLeft_toRightOf="@+id/iv_popup_share_weixin"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="QQ"
+            android:textSize="12dp"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/lessBlack"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_popup_share_qq"
+            app:layout_constraintRight_toRightOf="@+id/iv_popup_share_qq"
+            app:layout_constraintTop_toBottomOf="@+id/iv_popup_share_qq" />
+
+        <ImageView
+            android:id="@+id/iv_popup_share_qqroom"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:src="@mipmap/qqroom_share_icon"
+            app:layout_constraintLeft_toRightOf="@+id/iv_popup_share_qq"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="QQ空间"
+            android:textSize="12dp"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/lessBlack"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_popup_share_qqroom"
+            app:layout_constraintRight_toRightOf="@+id/iv_popup_share_qqroom"
+            app:layout_constraintTop_toBottomOf="@+id/iv_popup_share_qqroom" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/btn_popup_share_close"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/bg_white_btn_pressed"
+        android:text="取消"
+        android:textColor="@color/lessBlack"
+        android:textSize="18dp" />
+</LinearLayout>

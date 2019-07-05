@@ -25,6 +25,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 public class HomeActivity extends AppCompatActivity {
+
     private BottomNavigationView buttom_navigation_bar;
     private HomePageFragment homePageFragment;
     private LearningGroupFragment learningGroupFragment;

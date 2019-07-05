@@ -74,7 +74,7 @@ public class LearningGroupFragment extends Fragment {
 
                 if (data.size() < 10) {
                     Handler handler = new Handler(Looper.getMainLooper());
-                    new Thread(){
+                    new Thread() {
                         @Override
                         public void run() {
                             try {
@@ -121,8 +121,12 @@ public class LearningGroupFragment extends Fragment {
 
     private void getData() {
         for (int i = 0; i < 4; i++) {
+            List<String> urls = new ArrayList<>();
+            for (int l = 0; l < i % 4; l++) {
+                urls.add(" ");
+            }
             data.add(new LearningGroupBean("", "王老吉" + i
-                    , "感觉自己每天都在进步，进了企业学到好多东西，这是在学校完全学不到的！", "", "09/12 18:24"));
+                    , "感觉自己每天都在进步，进了企业学到好多东西，这是在学校完全学不到的！", urls, "09/12 18:24"));
         }
         return;
     }

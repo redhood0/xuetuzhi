@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
-    >
+    android:background="@color/white">
 
     <ImageView
         android:id="@+id/item_learning_group_profile_pic"
@@ -54,25 +54,119 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/item_learning_group_date" />
 
-    <ImageView
-        android:id="@+id/iv_learning_group_pic"
-        android:layout_width="0dp"
-        android:layout_height="125dp"
-        android:layout_marginLeft="16dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/group_learning_group_imgs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginRight="16dp"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/learning_group_pic"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_learning_group_msg" />
+        app:layout_constraintTop_toBottomOf="@+id/item_learning_group_msg">
+
+        <com.redhood.xtz.util.RoundImageView
+            android:id="@+id/iv_learning_group_pic_one"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/learning_group_pic"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.redhood.xtz.util.SquareImageView
+            android:id="@+id/iv_learning_group_pic_two1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="2dp"
+            android:background="@drawable/bg_shape_4welcome_btn"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/adv_two1"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/iv_learning_group_pic_two2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.redhood.xtz.util.SquareImageView
+            android:id="@+id/iv_learning_group_pic_two2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/bg_shape_4welcome_btn"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/adv_two2"
+            android:visibility="gone"
+            app:layout_constraintLeft_toRightOf="@+id/iv_learning_group_pic_two1"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.redhood.xtz.util.SquareImageView
+            android:id="@+id/iv_learning_group_pic_three1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="1dp"
+            android:background="@drawable/bg_shape_4welcome_btn"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/adv_two1"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/iv_learning_group_pic_three2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.redhood.xtz.util.SquareImageView
+            android:id="@+id/iv_learning_group_pic_three2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:background="@drawable/bg_shape_4welcome_btn"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/adv_two2"
+            android:visibility="gone"
+            app:layout_constraintLeft_toRightOf="@+id/iv_learning_group_pic_three1"
+            app:layout_constraintRight_toLeftOf="@+id/iv_learning_group_pic_three3"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.redhood.xtz.util.SquareImageView
+            android:id="@+id/iv_learning_group_pic_three3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/bg_shape_4welcome_btn"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/advc_three1"
+            android:visibility="gone"
+            app:layout_constraintLeft_toRightOf="@+id/iv_learning_group_pic_three2"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--<ImageView-->
+    <!--android:id="@+id/iv_learning_group_pic"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="125dp"-->
+    <!--android:layout_marginLeft="16dp"-->
+    <!--android:layout_marginTop="16dp"-->
+    <!--android:layout_marginRight="16dp"-->
+    <!--android:scaleType="centerCrop"-->
+    <!--android:background="@drawable/bg_shape_4welcome_btn"-->
+    <!--android:src="@mipmap/learning_group_pic"-->
+    <!--app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--app:layout_constraintRight_toRightOf="parent"-->
+    <!--app:layout_constraintTop_toBottomOf="@+id/item_learning_group_msg" />-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_learning_group_pic">
+        app:layout_constraintTop_toBottomOf="@+id/group_learning_group_imgs">
 
         <ImageView
             android:id="@+id/iv_learning_group_button_forwarding"
@@ -81,23 +175,24 @@
             android:layout_marginLeft="23dp"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
-            android:src="@drawable/button_forwarding"
             android:clickable="true"
+            android:src="@drawable/button_forwarding"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
+            android:id="@+id/tv_learning_group_button_forwarding"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="转发"
-            android:textSize="10sp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="23dp"
+            android:text="转发"
+            android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/iv_learning_group_button_forwarding"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -105,7 +200,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_learning_group_pic">
+        app:layout_constraintTop_toBottomOf="@+id/group_learning_group_imgs">
 
         <ImageView
             android:id="@+id/iv_learning_group_button_talk"
@@ -114,31 +209,32 @@
             android:layout_marginLeft="23dp"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
-            android:src="@drawable/button_talk"
             android:clickable="true"
+            android:src="@drawable/button_talk"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="评论"
-            android:textSize="10sp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="23dp"
+            android:text="评论"
+            android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/iv_learning_group_button_talk"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clayout_learning_group_littleicons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="23dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_learning_group_pic">
+        app:layout_constraintTop_toBottomOf="@+id/group_learning_group_imgs">
 
         <ImageView
             android:id="@+id/iv_learning_group_button_give_like"
@@ -147,23 +243,50 @@
             android:layout_marginLeft="23dp"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
-            android:src="@drawable/button_give_like"
             android:clickable="true"
+            android:src="@drawable/button_give_like"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="赞 "
-            android:textSize="10sp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="23dp"
+            android:text="赞 "
+            android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/iv_learning_group_button_give_like"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clayout_learning_group_littleicons">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/loginBorderGray"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></View>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

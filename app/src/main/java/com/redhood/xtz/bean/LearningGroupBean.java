@@ -1,13 +1,15 @@
 package com.redhood.xtz.bean;
 
+import java.util.List;
+
 public class LearningGroupBean {
     private String profile_pic;
     private String name;
     private String msg;
-    private String pic_url;
+    private List<String> pic_url;
     private String date;
 
-    public LearningGroupBean(String profile_pic, String name, String msg, String pic_url, String date) {
+    public LearningGroupBean(String profile_pic, String name, String msg, List<String> pic_url, String date) {
         this.profile_pic = profile_pic;
         this.name = name;
         this.msg = msg;
@@ -39,11 +41,11 @@ public class LearningGroupBean {
         this.msg = msg;
     }
 
-    public String getPic_url() {
+    public List<String> getPic_url() {
         return pic_url;
     }
 
-    public void setPic_url(String pic_url) {
+    public void setPic_url(List<String> pic_url) {
         this.pic_url = pic_url;
     }
 
