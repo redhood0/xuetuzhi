@@ -1,6 +1,8 @@
 package com.redhood.xtz.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +14,13 @@ import android.widget.TextView;
 import com.redhood.xtz.R;
 import com.redhood.xtz.adapter.LearningGroupAdapter;
 import com.redhood.xtz.bean.LearningGroupBean;
+import com.redhood.xtz.listener.EndlessRecyclerOnScrollListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,6 +34,7 @@ public class LearningGroupFragment extends Fragment {
     private TextView tv_home_title;
     private ImageView iv_home_add_icon;
     private RecyclerView recycleview_learning_group;
+    List<LearningGroupBean> data = new ArrayList<>(32);
 
     @Nullable
     @Override
@@ -48,16 +55,48 @@ public class LearningGroupFragment extends Fragment {
     }
 
     private void initRecycleView() {
-        LearningGroupAdapter learningGroupAdapter = new LearningGroupAdapter(getContext(),getData());
+        getData();
+
+        LearningGroupAdapter learningGroupAdapter = new LearningGroupAdapter(getContext(), data);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(RecyclerView.VERTICAL);
         recycleview_learning_group.setLayoutManager(manager);
         //添加自定义分割线
-        DividerItemDecoration divider = new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL);
-        divider.setDrawable(ContextCompat.getDrawable(getContext(),R.drawable.divider_learning_group));
+        DividerItemDecoration divider = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+        divider.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.divider_learning_group));
         recycleview_learning_group.addItemDecoration(divider);
 
         recycleview_learning_group.setAdapter(learningGroupAdapter);
+        recycleview_learning_group.addOnScrollListener(new EndlessRecyclerOnScrollListener() {
+            @Override
+            public void onLoadMore() {
+                learningGroupAdapter.setLoadState(learningGroupAdapter.LOADING);
+
+                if (data.size() < 10) {
+                    Handler handler = new Handler(Looper.getMainLooper());
+                    new Thread(){
+                        @Override
+                        public void run() {
+                            try {
+                                TimeUnit.SECONDS.sleep(3);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            getData();
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    learningGroupAdapter.setLoadState(learningGroupAdapter.LOADING_COMPLETE);
+                                }
+                            });
+                        }
+                    }.start();
+                } else {
+                    // 显示加载到底的提示
+                    learningGroupAdapter.setLoadState(learningGroupAdapter.LOADING_END);
+                }
+            }
+        });
     }
 
     @Override
@@ -80,12 +119,11 @@ public class LearningGroupFragment extends Fragment {
         iv_home_add_icon.setVisibility(View.VISIBLE);
     }
 
-    private List<LearningGroupBean> getData() {
-        List<LearningGroupBean> data = new ArrayList<>(4);
-        for (int i = 0; i < 8; i++) {
+    private void getData() {
+        for (int i = 0; i < 4; i++) {
             data.add(new LearningGroupBean("", "王老吉" + i
                     , "感觉自己每天都在进步，进了企业学到好多东西，这是在学校完全学不到的！", "", "09/12 18:24"));
         }
-        return data;
+        return;
     }
 }

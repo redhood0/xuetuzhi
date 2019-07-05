@@ -46,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
             if (loginCheck()) {
                 Intent intent = new Intent(this, HomeActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
