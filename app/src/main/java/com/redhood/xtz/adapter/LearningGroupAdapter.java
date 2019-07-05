@@ -226,15 +226,15 @@ public class LearningGroupAdapter extends RecyclerView.Adapter<RecyclerView.View
             showBackgroundAnimator();
             mIsShowing = true;
         }
-
         popupLeaveMsgWindow.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED); //解决不压键盘
         popupLeaveMsgWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);  //解决不压键盘
         InputMethodManager inputMethodManager = (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputMethodManager.toggleSoftInput(1000,InputMethodManager.HIDE_NOT_ALWAYS);
+        inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED,1000);
 
         popupLeaveMsgWindow.setOnDismissListener(() -> {
             setWindowBackgroundAlpha(1.0f);
-            inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+            inputMethodManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY,0);
+            //inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
         });
 
     }
@@ -325,7 +325,6 @@ public class LearningGroupAdapter extends RecyclerView.Adapter<RecyclerView.View
                 myHolder.iv_learning_group_pic_three1.setVisibility(View.VISIBLE);
                 myHolder.iv_learning_group_pic_three2.setVisibility(View.VISIBLE);
                 myHolder.iv_learning_group_pic_three3.setVisibility(View.VISIBLE);
-
                 break;
         }
     }
