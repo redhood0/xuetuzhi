@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -42,6 +44,7 @@ public class LearningGroupAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     private PopupWindow popupShareWindow;
     private PopupWindow popupLeaveMsgWindow;
+    private EditText editText;
     private boolean mIsShowing = false;
 
     Context context;
@@ -74,6 +77,7 @@ public class LearningGroupAdapter extends RecyclerView.Adapter<RecyclerView.View
             MyHolder myHolder = (MyHolder) holder;
             LearningGroupBean bean = datas.get(position);
             loadingShareImg(myHolder, bean.getPic_url());
+
             myHolder.item_learning_group_name.setText(bean.getName());
             myHolder.item_learning_group_date.setText(bean.getDate());
             myHolder.item_learning_group_msg.setText(bean.getMsg());
@@ -207,10 +211,12 @@ public class LearningGroupAdapter extends RecyclerView.Adapter<RecyclerView.View
     //留言输入窗口
     private void popupLeaveMsgWindow() {
         if (popupLeaveMsgWindow == null) {
-            View pop = View.inflate(context, R.layout.popup_leave_msg, null);
-            popupLeaveMsgWindow = new PopupWindow(pop, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            View popView = View.inflate(context, R.layout.popup_leave_msg, null);
+            editText = popView.findViewById(R.id.et_leave_msg);
+            popupLeaveMsgWindow = new PopupWindow(popView, ViewGroup.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
             popupLeaveMsgWindow.setTouchable(true);
             popupLeaveMsgWindow.setOutsideTouchable(true);
+            popupLeaveMsgWindow.setFocusable(true);
             popupLeaveMsgWindow.setBackgroundDrawable(new BitmapDrawable(context.getResources(), (Bitmap) null));
             popupLeaveMsgWindow.setAnimationStyle(R.style.anim_popup_window);
         }
@@ -219,10 +225,18 @@ public class LearningGroupAdapter extends RecyclerView.Adapter<RecyclerView.View
             popupLeaveMsgWindow.showAtLocation(activity.findViewById(R.id.buttom_navigation_bar), Gravity.BOTTOM, 0, 0);
             showBackgroundAnimator();
             mIsShowing = true;
-            popupLeaveMsgWindow.setOnDismissListener(() -> {
-                setWindowBackgroundAlpha(1.0f);
-            });
         }
+
+        popupLeaveMsgWindow.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED); //解决不压键盘
+        popupLeaveMsgWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);  //解决不压键盘
+        InputMethodManager inputMethodManager = (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.toggleSoftInput(1000,InputMethodManager.HIDE_NOT_ALWAYS);
+
+        popupLeaveMsgWindow.setOnDismissListener(() -> {
+            setWindowBackgroundAlpha(1.0f);
+            inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+        });
+
     }
     //分享弹窗弹出
     private void popupShareWindow() {
@@ -234,10 +248,10 @@ public class LearningGroupAdapter extends RecyclerView.Adapter<RecyclerView.View
             popupShareWindow.showAtLocation(activity.findViewById(R.id.buttom_navigation_bar), Gravity.BOTTOM, 0, 0);
             showBackgroundAnimator();
             mIsShowing = true;
-            popupShareWindow.setOnDismissListener(() -> {
-                setWindowBackgroundAlpha(1.0f);
-            });
         }
+        popupShareWindow.setOnDismissListener(() -> {
+            setWindowBackgroundAlpha(1.0f);
+        });
     }
 
     private void initPopup() {
