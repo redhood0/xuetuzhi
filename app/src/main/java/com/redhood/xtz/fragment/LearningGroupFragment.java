@@ -4,17 +4,20 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.redhood.xtz.R;
 import com.redhood.xtz.adapter.LearningGroupAdapter;
 import com.redhood.xtz.bean.LearningGroupBean;
 import com.redhood.xtz.listener.EndlessRecyclerOnScrollListener;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,11 +30,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class LearningGroupFragment extends Fragment {
     private TextView tv_home_title;
     private ImageView iv_home_add_icon;
     private RecyclerView recycleview_learning_group;
+    private SwipeRefreshLayout swip_refresh_layout_learning_group;
+    private LearningGroupAdapter learningGroupAdapter;
     List<LearningGroupBean> data = new ArrayList<>(32);
 
     @Nullable
@@ -47,15 +53,58 @@ public class LearningGroupFragment extends Fragment {
         tv_home_title = getActivity().findViewById(R.id.tv_home_title);
         iv_home_add_icon = getActivity().findViewById(R.id.iv_home_add_icon);
         recycleview_learning_group = view.findViewById(R.id.recycleview_learning_group);
+        swip_refresh_layout_learning_group = view.findViewById(R.id.swip_refresh_layout_learning_group);
 
         initRecycleView();
+        initSwipRefresh();
         changeTitleBar();
+    }
+
+    private void initSwipRefresh() {
+        swip_refresh_layout_learning_group.setColorSchemeResources(R.color.homePageBgBlue);
+        swip_refresh_layout_learning_group.setOnRefreshListener(() -> {
+                    loadNewData();
+                }
+        );
+    }
+
+    private void loadNewData() {
+        Handler handler = new Handler();
+        new Thread() {
+            @Override
+            public void run() {
+                int beforeSize = data.size();
+                try {
+                    //todo:模拟后台获取数据的耗时操作
+                    TimeUnit.SECONDS.sleep(2);
+                    data.add(0, new LearningGroupBean("", "111"
+                            , "刷新数据111", new ArrayList<>(), "09/12 18:24"));
+                    data.add(1, new LearningGroupBean("", "222"
+                            , "刷新数据222", new ArrayList<>(), "09/12 18:24"));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (swip_refresh_layout_learning_group.isRefreshing()) {
+                            swip_refresh_layout_learning_group.setRefreshing(false);
+                            if (data.size() == beforeSize) {
+                                Toast.makeText(getContext(), "暂无更多数据", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                            learningGroupAdapter.notifyDataSetChanged();
+                        }
+                    }
+                });
+            }
+        }.start();
     }
 
     private void initRecycleView() {
         getData();
 
-        LearningGroupAdapter learningGroupAdapter = new LearningGroupAdapter(getContext(), data);
+        learningGroupAdapter = new LearningGroupAdapter(getContext(), data);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(RecyclerView.VERTICAL);
         recycleview_learning_group.setLayoutManager(manager);
@@ -69,8 +118,8 @@ public class LearningGroupFragment extends Fragment {
             @Override
             public void onLoadMore() {
                 learningGroupAdapter.setLoadState(learningGroupAdapter.LOADING);
-
-                if (data.size() < 10) {
+                LinearLayoutManager manager = (LinearLayoutManager) recycleview_learning_group.getLayoutManager();
+                if (manager.findLastVisibleItemPosition() <= data.size()) {
                     Handler handler = new Handler(Looper.getMainLooper());
                     new Thread() {
                         @Override

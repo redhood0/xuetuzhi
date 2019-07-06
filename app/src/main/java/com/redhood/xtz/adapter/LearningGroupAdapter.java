@@ -124,6 +124,7 @@ public class LearningGroupAdapter extends RecyclerView.Adapter<RecyclerView.View
         TextView item_learning_group_msg;
         TextView tv_learning_group_button_forwarding;
         TextView tv_learning_group_button_talk;
+
         ImageView iv_learning_group_button_give_like;
         ImageView iv_learning_group_pic_one;
         ImageView iv_learning_group_pic_two1;
@@ -139,6 +140,7 @@ public class LearningGroupAdapter extends RecyclerView.Adapter<RecyclerView.View
             item_learning_group_date = itemView.findViewById(R.id.item_learning_group_date);
             item_learning_group_msg = itemView.findViewById(R.id.item_learning_group_msg);
             iv_learning_group_button_give_like = itemView.findViewById(R.id.iv_learning_group_button_give_like);
+
             iv_learning_group_pic_one = itemView.findViewById(R.id.iv_learning_group_pic_one);
             iv_learning_group_pic_two1 = itemView.findViewById(R.id.iv_learning_group_pic_two1);
             iv_learning_group_pic_two2 = itemView.findViewById(R.id.iv_learning_group_pic_two2);
@@ -217,7 +219,7 @@ public class LearningGroupAdapter extends RecyclerView.Adapter<RecyclerView.View
             popupLeaveMsgWindow.setTouchable(true);
             popupLeaveMsgWindow.setOutsideTouchable(true);
             popupLeaveMsgWindow.setFocusable(true);
-            popupLeaveMsgWindow.setBackgroundDrawable(new BitmapDrawable(context.getResources(), (Bitmap) null));
+            //popupLeaveMsgWindow.setBackgroundDrawable(new BitmapDrawable(context.getResources(), (Bitmap) null));
             popupLeaveMsgWindow.setAnimationStyle(R.style.anim_popup_window);
         }
         if (!popupLeaveMsgWindow.isShowing()) {
@@ -234,9 +236,7 @@ public class LearningGroupAdapter extends RecyclerView.Adapter<RecyclerView.View
         popupLeaveMsgWindow.setOnDismissListener(() -> {
             setWindowBackgroundAlpha(1.0f);
             inputMethodManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY,0);
-            //inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
         });
-
     }
     //分享弹窗弹出
     private void popupShareWindow() {
