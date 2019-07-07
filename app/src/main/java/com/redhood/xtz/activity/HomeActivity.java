@@ -12,6 +12,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.redhood.xtz.R;
 import com.redhood.xtz.fragment.HomePageFragment;
 import com.redhood.xtz.fragment.LearningGroupFragment;
+import com.redhood.xtz.fragment.MsgFragment;
 import com.redhood.xtz.util.StatusUtil;
 
 import java.lang.reflect.InvocationTargetException;
@@ -29,6 +30,7 @@ public class HomeActivity extends AppCompatActivity {
     private BottomNavigationView buttom_navigation_bar;
     private HomePageFragment homePageFragment;
     private LearningGroupFragment learningGroupFragment;
+    private MsgFragment msgFragment;
     private List<Fragment> fragments = new ArrayList<>(4);
 
     @Override
@@ -43,6 +45,7 @@ public class HomeActivity extends AppCompatActivity {
         StatusUtil.makeStatusBarTransparentAndFullContent(this);
 
         buttom_navigation_bar = findViewById(R.id.buttom_navigation_bar);
+        findViewById(R.id.flayout_4homechange);
 
         showFragmentPage(homePageFragment, HomePageFragment.class);
         buttom_navigation_bar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -55,6 +58,9 @@ public class HomeActivity extends AppCompatActivity {
                         break;
                     case R.id.home_item_learning_group:
                         showFragmentPage(learningGroupFragment, LearningGroupFragment.class);
+                        break;
+                    case R.id.home_item_msg:
+                        showFragmentPage(msgFragment, MsgFragment.class);
                         break;
                 }
                 return true;
@@ -74,6 +80,9 @@ public class HomeActivity extends AppCompatActivity {
                         break;
                     case "LearningGroupFragment":
                         learningGroupFragment = (LearningGroupFragment) fragment;
+                        break;
+                    case "MsgFragment":
+                        msgFragment = (MsgFragment) fragment;
                         break;
                 }
                 transition.add(R.id.flayout_4homechange, fragment);

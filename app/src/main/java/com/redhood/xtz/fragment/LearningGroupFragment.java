@@ -50,8 +50,8 @@ public class LearningGroupFragment extends Fragment {
     }
 
     private void init(View view) {
-        tv_home_title = getActivity().findViewById(R.id.tv_home_title);
-        iv_home_add_icon = getActivity().findViewById(R.id.iv_home_add_icon);
+        tv_home_title =view.findViewById(R.id.tv_home_title);
+        iv_home_add_icon =view.findViewById(R.id.iv_home_add_icon);
         recycleview_learning_group = view.findViewById(R.id.recycleview_learning_group);
         swip_refresh_layout_learning_group = view.findViewById(R.id.swip_refresh_layout_learning_group);
 
@@ -151,15 +151,15 @@ public class LearningGroupFragment extends Fragment {
         super.onResume();
     }
 
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if (!hidden) {
-            changeTitleBar();
-        } else {
-
-        }
-    }
+//    @Override
+//    public void onHiddenChanged(boolean hidden) {
+//        super.onHiddenChanged(hidden);
+//        if (!hidden) {
+//            changeTitleBar();
+//        } else {
+//
+//        }
+//    }
 
     private void changeTitleBar() {
         tv_home_title.setText("学习交流圈");

@@ -28,25 +28,24 @@ public class HomePageFragment extends Fragment {
     }
 
     private void init(View view) {
-
+        tv_home_title = view.findViewById(R.id.tv_home_title);
+        iv_home_add_icon = view.findViewById(R.id.iv_home_add_icon);
+        changeTitleBar();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        tv_home_title = getActivity().findViewById(R.id.tv_home_title);
-        iv_home_add_icon = getActivity().findViewById(R.id.iv_home_add_icon);
-        changeTitleBar();
     }
 
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if (!hidden) {
-            changeTitleBar();
-        } else {
-        }
-    }
+//    @Override
+//    public void onHiddenChanged(boolean hidden) {
+//        super.onHiddenChanged(hidden);
+//        if (!hidden) {
+//            changeTitleBar();
+//        } else {
+//        }
+//    }
 
     private void changeTitleBar() {
         tv_home_title.setText("首页");

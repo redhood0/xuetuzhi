@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" android:background="@color/loginTextGray">
+    <include layout="@layout/title_my_ez_title"></include>
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swip_refresh_layout_learning_group"
         android:layout_width="match_parent"
